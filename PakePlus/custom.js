@@ -24,4 +24,12 @@ window.open = function (url, target, features) {
 }
 
 document.addEventListener('click', hookClick, { capture: true })
-setInterval(() => document.querySelector('div.absolute.top-4.left-4')?.remove(), 10);
+setInterval(() => document.querySelector('div.absolute.top-4.left-4')?.remove(), 10)
+
+history.pushState(null, null, location.href);
+window.addEventListener('popstate', function (e) {
+    // 当用户点击“后退”时，会触发此事件
+    history.pushState(null, null, location.href);
+    // 在这里处理你的业务逻辑，比如显示广告或弹窗
+    console.log('后退操作已被拦截！');
+})
